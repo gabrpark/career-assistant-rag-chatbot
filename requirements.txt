@@ -1,1 +1,6 @@
 python-dotenv
+flask
+torch
+transformers
+pdfplumber
+scikit-learn
