@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 # Get the variables
-group_id = os.getenv('GROUP_ID')
+group_id = os.getenv('GROUP_ID_2')
 access_token = os.getenv('ACCESS_TOKEN')
 
 # Fetch group posts with an optional limit
@@ -84,10 +84,11 @@ else:
     for post in posts['data']:
         post_id = post.get('id', 'No ID')
         message = post.get('message', None)
+        updated_time = post.get('updated_time', 'No time')
 
         if message:
             print(f"Post ID: {post_id}")
-            print(f"Post: {message}")
+            print(f"{updated_time} Post: {message}")
 
             comments = get_post_comments(
                 post_id, access_token) if post_id != 'No ID' else {}
@@ -95,14 +96,19 @@ else:
                 for comment in comments['data']:
                     comment_id = comment.get('id', 'No ID')
                     comment_message = comment.get('message', 'No message')
-                    print(f"Comment: {comment_message}")
+                    comment_created_time = comment.get(
+                        'created_time', 'No time')
+                    print(f"{comment_created_time} Comment: {comment_message}")
 
                     # Fetch and print replies to the comment
                     replies = get_comment_replies(comment_id, access_token)
                     if replies and 'data' in replies:
                         for reply in replies['data']:
                             reply_message = reply.get('message', 'No message')
-                            print(f"  Reply: {reply_message}")
+                            reply_created_time = reply.get(
+                                'created_time', 'No time')
+                            print(
+                                f"{reply_created_time}  Reply: {reply_message}")
                     else:
                         print("  No replies found")
             else:
