@@ -1,10 +1,12 @@
-FROM python:3.9-slim
+# Use the official AWS Lambda Python 3.12 base image
+FROM public.ecr.aws/lambda/python:3.12
 
-WORKDIR /app
+# Copy requirements.txt and install dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy the application code
+COPY src/ .
 
-COPY . .
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run the Lambda function (this is required for Lambda container images)
+CMD [ "lambda_function.lambda_handler"]

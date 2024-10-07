@@ -1,4 +1,0 @@
-Person1, timestamp: (Question1) What is fish?
-Person2, timestamp: (Answer1) Fish is a type of seafood.
-Person2, timestamp: (Answer2) Fish is an aquatic animal.
-Person1, timestamp: (Follow-up) Thanks! I think they are interesting creatures.

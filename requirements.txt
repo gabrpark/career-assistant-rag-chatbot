@@ -1,9 +1,2 @@
-fastapi
-uvicorn
-pymongo
-qdrant-client
-llama-index
-sentence-transformers
-streamlit
 facebook-sdk
 python-dotenv
