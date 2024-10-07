@@ -164,3 +164,9 @@ cython_debug/
 # Custom
 data/
 src/utils/config.py
+myenv/
+lambda_functions/retrieveAndGenerate/src/utils/config.py
+lambda_functions/embedAndStore/src/utils/config.py
+lambda_functions/.DS_Store
+lambda_functions/embedAndStore/.DS_Store
+lambda_functions/embedAndStore/src/.DS_Store
