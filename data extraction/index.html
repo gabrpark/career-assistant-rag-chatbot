@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RAG Frontend</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			padding: 20px;
+		}
+
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		textarea {
+			width: 100%;
+			height: 100px;
+			margin-bottom: 10px;
+			padding: 10px;
+		}
+
+		button {
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		.response {
+			margin-top: 20px;
+			white-space: pre-wrap;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Ask a Question</h1>
+		<p>Type a query below and get an AI-generated response.</p>
+		<textarea id="queryInput" placeholder="Enter your query..."></textarea>
+		<button onclick="sendQuery()">Submit</button>
+
+		<div class="response" id="responseOutput"></div>
+	</div>
+
+	<script>
+		async function sendQuery() {
+			const query = document.getElementById('queryInput').value;
+
+			// Call the API Gateway endpoint for your retrieveAndGenerate function
+			const response = await fetch('https://oj0iu6s1na.execute-api.us-west-2.amazonaws.com/prod/retrieveAndGenerate', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ user_query: query })
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				// Extract the plain text response from 'model_response' key
+				const modelResponse = JSON.parse(data.body).model_response.generation;
+				document.getElementById('responseOutput').innerHTML = '<h2>Response:</h2>' + modelResponse;
+			} else {
+				document.getElementById('responseOutput').innerHTML = '<h2>Error:</h2> Failed to get a response. Please try again later.';
+			}
+		}
+	</script>
+</body>
+
+</html>
