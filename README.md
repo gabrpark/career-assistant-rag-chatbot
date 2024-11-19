@@ -1,6 +1,6 @@
 # Facebook Group Data Pipeline & RAG System
 
-A system for extracting Facebook group content, processing it with embeddings, and implementing a retrieval-augmented generation (RAG) chat system using AWS Bedrock Llama2.
+A system for extracting Facebook group content, processing it with embeddings, and implementing a retrieval-augmented generation (RAG) chat system using AWS Bedrock Llama3.
 
 ## Project Structure
 
@@ -207,7 +207,3 @@ flake8
 ## License
 
 MIT License
-
-## Support
-
-For support, please open an issue in the GitHub repository or contact [your-email@example.com]
